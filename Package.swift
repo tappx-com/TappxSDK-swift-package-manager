@@ -11,21 +11,23 @@ let package = Package(
             name: "TappxSDK",
             targets: ["TappxSDKTarget"]),
     ],
-    dependencies: [
-        .package(name: "OMSDK_Tappx", path: "OMSDK_Tappx")
-    ],
     targets: [
         .target(
             name: "TappxSDKTarget",
             dependencies: [
                 .target(name: "TappxFramework"),
-                .product(name: "OMSDK_Tappx", package: "OMSDK_Tappx")
+                .target(name: "OMSDK_Tappx")
             ],
             path: "TappxSDKTarget",
             exclude: [
-                "TappxFramework.xcframework/ios-arm64_x86_64-simulator/TappxFramework.framework/PrivacyInfo.xcprivacy"
+                "TappxFramework.xcframework/ios-arm64_x86_64-simulator/TappxFramework.framework/PrivacyInfo.xcprivacy",
+                "OMSDK_Tappx.xcframework/ios-arm64_x86_64-simulator/OMSDK_Tappx.framework/PrivacyInfo.xcprivacy",
+                "OMSDK_Tappx.xcframework/ios-arm64/OMSDK_Tappx.framework/PrivacyInfo.xcprivacy",
+                "OMSDK_Tappx.xcframework/tvos-arm64_x86_64-simulator/OMSDK_Tappx.framework/PrivacyInfo.xcprivacy",
+                "OMSDK_Tappx.xcframework/tvos-arm64/OMSDK_Tappx.framework/PrivacyInfo.xcprivacy"
             ]
         ),
         .binaryTarget(name: "TappxFramework", path: "TappxSDKTarget/TappxFramework.xcframework"),
+        .binaryTarget(name: "OMSDK_Tappx", path: "TappxSDKTarget/OMSDK_Tappx.xcframework"),
     ]
 )
